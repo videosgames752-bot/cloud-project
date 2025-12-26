@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugo Cloud Play (Vanilla Client)</title>
+    <style>
+        body { font-family: sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        .container { background: #1e293b; padding: 2rem; border-radius: 1rem; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        input { display: block; width: 100%; padding: 0.75rem; margin-bottom: 1rem; border-radius: 0.5rem; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 0.75rem; background: #0ea5e9; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0284c7; }
+        #status { margin-top: 1rem; color: #94a3b8; font-size: 0.875rem; }
+        .hidden { display: none; }
+        #gamepad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .btn { aspect-ratio: 1; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; user-select: none; cursor: pointer; }
+        .btn:active { background: #0ea5e9; }
+    </style>
+</head>
+<body>
+    <div id="login" class="container">
+        <h2>Yugo Cloud Play</h2>
+        <input type="text" id="username" placeholder="Enter Name" />
+        <input type="text" id="roomId" placeholder="Room Code (e.g. X7Y2Z1)" />
+        <button onclick="joinRoom()">Join Room</button>
+        <p id="status"></p>
+    </div>
+
+    <div id="controls" class="container hidden">
+        <h3 id="roomDisplay"></h3>
+        <div id="gamepad">
+            <div class="btn" onclick="sendInput('L1')">L1</div>
+            <div class="btn" onclick="sendInput('UP')">⬆️</div>
+            <div class="btn" onclick="sendInput('R1')">R1</div>
+            <div class="btn" onclick="sendInput('LEFT')">⬅️</div>
+            <div class="btn" onclick="sendInput('DOWN')">⬇️</div>
+            <div class="btn" onclick="sendInput('RIGHT')">➡️</div>
+            <div class="btn" onclick="sendInput('SQUARE')">⬜</div>
+            <div class="btn" onclick="sendInput('CROSS')">❌</div>
+            <div class="btn" onclick="sendInput('CIRCLE')">⭕</div>
+        </div>
+        <button onclick="location.reload()" style="margin-top: 20px; background: #ef4444;">Exit</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
